@@ -1,8 +1,7 @@
 package com.lab;
 
-/**
- * Hello world!
- */
+import java.util.Scanner;
+
 public class App {
     static Minesweeper initMineField() {
         Minesweeper game = new Minesweeper(9, 9);
@@ -22,11 +21,40 @@ public class App {
         return new Minesweeper(minefieldFile);
     }
     public static void main(String[] args) {
-        // Task 3: Implement a menu to select the mine field template
-        // Design the menu by yourself.
-                
-        Minesweeper game = initMineField();
-        // Minesweeper game = initMineFieldFromFile("minefield/minefield01.txt");
-        game.displayField();
-    }    
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Select Minefield Template:");
+        System.out.println("1. Default Minefield");
+        System.out.println("2. Load Minefield from File");
+        System.out.print("What do you want: ");
+        int choice = scanner.nextInt();
+        scanner.nextLine();
+
+        Minesweeper game = null;
+        if (choice == 2) {
+            System.out.print("Enter filename: ");
+            String filename = scanner.nextLine();
+            game = initMineFieldFromFile(filename);
+        } else {
+            game = initMineField();
+        }
+
+        boolean gameOver = false;
+        while (!gameOver) {
+            game.displayField();
+            System.out.print("Enter row (1-9): ");
+            int x = scanner.nextInt()-1;
+            System.out.print("Enter column (1-9): ");
+            int y = scanner.nextInt()-1;
+            
+            gameOver = game.revealCell(x, y);
+            
+            if (game.isWin()) {
+                game.displayField();
+                System.out.println("Congratulations! You cleared the minefield!");
+                break;
+            }
+        }
+
+        scanner.close();
+    }
 }
