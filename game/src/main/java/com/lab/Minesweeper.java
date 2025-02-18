@@ -22,7 +22,7 @@ public class Minesweeper {
         this.fieldX = fieldX;
         this.fieldY = fieldY;
         this.cells = new int[fieldX][fieldY];
-        this.revealed = new boolean[fieldX][fieldY]; // Initially, all cells are hidden
+        this.revealed = new boolean[fieldX][fieldY]; 
 
         for (int i = 0; i < fieldX; i++) {
             for (int j = 0; j < fieldY; j++) {
