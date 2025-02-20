@@ -37,7 +37,6 @@ public class App {
         } else {
             game = initMineField();
         }
-
         boolean gameOver = false;
         while (!gameOver) {
             game.displayField();

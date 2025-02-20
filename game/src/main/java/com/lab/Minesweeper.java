@@ -83,29 +83,18 @@ public class Minesweeper {
             System.out.println("Invalid move! Try again.");
             return false;
         }
-
-        revealed[x][y] = true;
-
+    
+        revealed[x][y] = true; 
         if (cells[x][y] == IS_MINE) {
             System.out.println("BOOM! You hit a mine. Game Over!");
-            displayField();
+            displayField(); 
             return true; 
         }
-
-        
-        if (countAdjacentMines(x, y) == 0) {
-            for (int dx = -1; dx <= 1; dx++) {
-                for (int dy = -1; dy <= 1; dy++) {
-                    int nx = x + dx, ny = y + dy;
-                    if (nx >= 0 && nx < fieldX && ny >= 0 && ny < fieldY && !revealed[nx][ny]) {
-                        revealCell(nx, ny);
-                    }
-                }
-            }
-        }
-
-        return false;
+    
+        return false; 
     }
+    
+    
      public boolean isWin() {
         for (int i = 0; i < fieldX; i++) {
             for (int j = 0; j < fieldY; j++) {
